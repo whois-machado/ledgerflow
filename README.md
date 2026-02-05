@@ -38,10 +38,12 @@ Como parte do meu projeto de **Iniciação Científica**, o LedgerFlow serve com
 1. **Clone o repositório:**
    ```bash
    git clone [https://github.com/whois-machado/ledgerflow.git](https://github.com/whois-machado/ledgerflow.git)
-2. Compile o projeto (a partir da raiz):
-   `javac -d out src/com/ledgerflow/**/*.java`
-3. Execute o Sistema:
-   `java -cp out com.ledgerflow.app.AppBanco`
+2. **Compile o projeto (a partir da raiz):**
+   ```bash
+   javac -d out src/com/ledgerflow/**/*.java
+4. **Execute o Sistema:**
+   ```bash
+   java -cp out com.ledgerflow.app.AppBanco
 
 ---
 Desenvolvido por **Gabriel Machado** — Engenheiro de Software & Estudante de Ciência da Computação (UFRRJ).

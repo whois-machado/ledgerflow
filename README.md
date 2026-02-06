@@ -26,8 +26,8 @@ Como parte do meu projeto de **Iniciação Científica**, o LedgerFlow serve com
 ## 🗺️ Roadmap de Evolução
 - [x] Arquitetura Base e POO.
 - [x] Lógica de Transferência Consistente.
-- [ ] **[Próximo]** Implementação de Exceções Customizadas (`InsufficientFundsException`).
-- [ ] Persistência de dados em memória via `Maps` e Streams.
+- [x] Implementação de Exceções Customizadas (`InsufficientFundsException`).
+- [ ] **[proximo]** Persistência de dados em memória via `Maps` e Streams.
 - [ ] Integração com Banco de Dados SQL via JDBC.
 - [ ] **Fase Spring:** Transformação em uma API REST escalável com Spring Boot.
 

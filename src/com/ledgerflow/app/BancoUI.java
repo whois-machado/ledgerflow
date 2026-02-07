@@ -4,8 +4,6 @@ import com.ledgerflow.model.ContaBancaria;
 import com.ledgerflow.exceptions.InsufficientFundsException;
 import com.ledgerflow.model.Transacao;
 
-import java.util.InputMismatchException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 

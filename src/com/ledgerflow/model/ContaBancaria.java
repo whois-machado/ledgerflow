@@ -2,6 +2,7 @@ package com.ledgerflow.model;
 
 import com.ledgerflow.enums.TipoConta;
 import com.ledgerflow.enums.TipoTransacao;
+import com.ledgerflow.exceptions.InsufficientFundsException;
 
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
@@ -60,7 +61,7 @@ public class ContaBancaria {
     DateTimeFormatter fmtData = DateTimeFormatter.ofPattern("dd/MM/yy");
     DateTimeFormatter fmtHora = DateTimeFormatter.ofPattern("HH:mm");
 
-    public String exibirExtrato(Transacao trans, String numerodaContaOrigem){
+    public String formatarTransacao(Transacao trans, String numerodaContaOrigem){
 
         String data = trans.getDataHora().format(fmtData);
         String hora = trans.getDataHora().format(fmtHora);
@@ -71,12 +72,12 @@ public class ContaBancaria {
         }
 
         // DEPOSITO
-        if (trans.getTipo() == TipoTransacao.DEPOSITO) {
+        else if (trans.getTipo() == TipoTransacao.DEPOSITO) {
             return "DATA: " + data + " | HORARIO: " + hora + " - DEPÓSITO de R$ " + trans.getValor();
         }
 
         // TRANSFERENCIA
-        if (numerodaContaOrigem.equals(trans.getNumeroContaOrigem())) {
+        else if (numerodaContaOrigem.equals(trans.getNumeroContaOrigem()) && trans.getTipo() == TipoTransacao.TRANSFERENCIA) {
             return "DATA: " + data + " | HORARIO: " + hora + " - TRANSFERÊNCIA feita para conta " + trans.getNumeroContaDestino() + " | Valor: R$ " + trans.getValor();
         } else {
             return "DATA: " + data + " | HORARIO: " + hora + " - TRANSFERÊNCIA recebida da conta " + trans.getNumeroContaOrigem() + " | Valor: R$ " + trans.getValor();
@@ -85,9 +86,9 @@ public class ContaBancaria {
 
     // Métodos de negócio que controlam mudanças de saldo:
 
-    public boolean depositar(double valor){
+    public void depositar(double valor){
         if(valor <= 0){
-            return false;
+            throw new IllegalArgumentException("O valor do depósito deve ser positivo.");
         }
 
         saldo += valor;
@@ -101,14 +102,15 @@ public class ContaBancaria {
         );
 
         transacoes.add(trans);
-        return true;
     }
 
-    public boolean sacar(double valor){
+    public void sacar(double valor){
 
-        if(valor <= 0 || valor > saldo){
-            System.out.println("Saque inválido!\nvalor = " + valor + ", saldo = " + saldo);
-            return false;
+        if(valor <= 0){
+            throw new IllegalArgumentException("O valor do saque deve ser positivo.");
+        }
+        if(valor > this.saldo){
+            throw new InsufficientFundsException("Saldo Insuficiente.");
         }
 
         saldo -= valor;
@@ -122,16 +124,12 @@ public class ContaBancaria {
         );
 
         transacoes.add(trans);
-        return true;
     }
 
-    public boolean transferir(double valor, ContaBancaria contaDestino){
-        if(valor <= 0 || valor > this.saldo){
-            return false;
-        }
+    public void transferir(double valor, ContaBancaria contaDestino){
+        this.sacar(valor);
 
-        this.saldo -= valor;
-        contaDestino.saldo += valor;
+        contaDestino.depositar(valor);
 
         // extrato na conta origem
         Transacao trans = new Transacao(
@@ -144,7 +142,5 @@ public class ContaBancaria {
         );
         this.transacoes.add(trans);
         contaDestino.getTransacoes().add(trans);
-
-        return true;
     }
 }

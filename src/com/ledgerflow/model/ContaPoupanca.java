@@ -18,10 +18,4 @@ public class ContaPoupanca extends ContaBancaria{
             throw new IllegalArgumentException("Taxa deve ser maior que zero");
         }
     }
-
-    @Override
-    public boolean sacar(double valor){
-
-        return super.sacar(valor);
-    }
 }

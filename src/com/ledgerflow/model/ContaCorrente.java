@@ -1,6 +1,7 @@
 package com.ledgerflow.model;
 
 import com.ledgerflow.enums.TipoConta;
+import com.ledgerflow.exceptions.InsufficientFundsException;
 
 public class ContaCorrente extends ContaBancaria {
 
@@ -11,17 +12,10 @@ public class ContaCorrente extends ContaBancaria {
     private double limiteChequeEspecial;
 
     @Override
-    public boolean sacar(double valor){
-        double saldoAtual = getSaldo();
-        if(valor <= 0){
-            return false;
+    public void sacar(double valor){
+        if(valor > (getSaldo() + this.limiteChequeEspecial)){
+            throw new InsufficientFundsException("Saldo e Limites excedidos!");
         }
-        else if(valor > (saldoAtual + limiteChequeEspecial)){
-            return false;
-        }
-        else{
-            return super.sacar(valor); // aqui o saldo da com.ledgerflow.model.ContaBancaria é atualizado
-        }
+        super.sacar(valor);
     }
-
 }

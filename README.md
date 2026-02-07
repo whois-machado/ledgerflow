@@ -8,16 +8,18 @@ O **LedgerFlow** é um sistema de motor financeiro desenvolvido em Java para sim
 ---
 
 ## 🚀 Funcionalidades Atuais
-- **Gestão de Contas:** Suporte a Conta Corrente (com cheque especial) e Poupança (com rendimentos) via Herança e Polimorfismo.
-- **Log Transacional Consistente:** Cada operação gera um registro imutável com IDs únicos (`UUID`) e carimbos de tempo (`LocalDateTime`), refletidos simultaneamente nas contas de origem e destino.
-- **Segurança de Saldo:** Lógica de transferência protegida contra registros inconsistentes e validação de fundos em tempo real.
-- **Interface CLI:** Menu interativo via console para simulação de operações bancárias completas.
+- **Gestão de Contas Multi-tipo:** Suporte a Conta Corrente e Poupança através de Herança e Polimorfismo, garantindo extensibilidade do sistema.
+- **Log Transacional Imutável:** Cada operação gera um registro rastreável com IDs únicos (`UUID`) e carimbos de tempo (`LocalDateTime`), refletidos em tempo real nas contas envolvidas.
+- **Navegação e Entrada Resiliente:** Interface protegida contra falhas fatais. O sistema utiliza mecanismos de `Safe Input` para tratar entradas inválidas (letras em campos numéricos) sem interromper a execução.
+- **Busca de Performance O(1):** Localização instantânea de correntistas e contas destino através de `HashMaps`, eliminando a necessidade de iterações lentas em grandes volumes de dados.
+- **Arquitetura Modular (CLI):** Interface de usuário totalmente desacoplada da lógica de negócio (SRP), facilitando futuras migrações para interfaces Web ou Mobile.
 
 ## 🛠️ Tecnologias e Conceitos Aplicados
 - **Linguagem:** Java 24.0.1.
-- **Arquitetura:** POO Avançada (Abstração, Encapsulamento, Polimorfismo).
-- **Estrutura Profissional:** Organização por pacotes (`app`, `enums`, `model`) para escalabilidade.
-- **Identificadores:** Uso de `UUID` para garantir a rastreabilidade universal de transações.
+- **Arquitetura e Princípios:** POO Avançada (Abstração, Encapsulamento) e aplicação rigorosa de SOLID (especialmente o Princípio da Responsabilidade Única).
+- **Estruturas de Dados:** Uso estratégico de Coleções avançadas (`Maps/HashMap`) para otimização algorítmica e redução de complexidade computacional.
+- **Gestão de Projeto Ágil:** Ciclo de vida de software gerenciado via GitHub Projects e Kanban, com rastreabilidade total através de Issues e Milestones.
+- **Padrões de Versionamento:** Histórico de desenvolvimento baseado em Conventional Commits, garantindo uma documentação de mudanças profissional e semântica.
 
 ## 🔬 Pesquisa & Inovação (UFRRJ)
 Como parte do meu projeto de **Iniciação Científica**, o LedgerFlow serve como laboratório para:

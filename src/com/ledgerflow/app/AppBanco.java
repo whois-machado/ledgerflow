@@ -33,7 +33,7 @@ public class AppBanco {
                     rodando = false;
                     continue;
                 }
-                contaLogada = ui.realizarLogin(mapaContas);
+                contaLogada = ui.efetuarLogin(mapaContas);
             }
             else{
                 int opMenu = ui.exibirMenuConta(contaLogada);
@@ -49,10 +49,10 @@ public class AppBanco {
                         ui.realizarSaque(contaLogada);
                         break;
                     case 4:
-                        ui.realizarTransferencia(contaLogada, mapaContas);
+                        ui.realizarPix(contaLogada, mapaContas);
                         break;
                     case 5:
-                        ui.exibirExtrato(contaLogada);
+                        ui.exibirExtratoFiltrado(contaLogada);
                         break;
                     case 6:
                         contaLogada = null;

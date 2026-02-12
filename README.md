@@ -10,16 +10,15 @@ O **LedgerFlow** é um sistema de motor financeiro desenvolvido em Java para sim
 ## 🚀 Funcionalidades Atuais
 - **Gestão de Contas Multi-tipo:** Suporte a Conta Corrente e Poupança através de Herança e Polimorfismo, garantindo extensibilidade do sistema.
 - **Log Transacional Imutável:** Cada operação gera um registro rastreável com IDs únicos (`UUID`) e carimbos de tempo (`LocalDateTime`), refletidos em tempo real nas contas envolvidas.
-- **Navegação e Entrada Resiliente:** Interface protegida contra falhas fatais. O sistema utiliza mecanismos de `Safe Input` para tratar entradas inválidas (letras em campos numéricos) sem interromper a execução.
+- **Data API & Filtros Inteligentes:** Motor de busca para geração de extratos segmentados por tipo de operação e intervalos temporais dinâmicos, utilizando processamento funcional.
 - **Busca de Performance O(1):** Localização instantânea de correntistas e contas destino através de `HashMaps`, eliminando a necessidade de iterações lentas em grandes volumes de dados.
-- **Arquitetura Modular (CLI):** Interface de usuário totalmente desacoplada da lógica de negócio (SRP), facilitando futuras migrações para interfaces Web ou Mobile.
-
+- **Blindagem e Documentação:** Lógica de negócio protegida por testes unitários rigorosos (JUnit 5) e código integralmente documentado no padrão profissional JavaDoc.
 ## 🛠️ Tecnologias e Conceitos Aplicados
 - **Linguagem:** Java 24.0.1.
-- **Arquitetura e Princípios:** POO Avançada (Abstração, Encapsulamento) e aplicação rigorosa de SOLID (especialmente o Princípio da Responsabilidade Única).
-- **Estruturas de Dados:** Uso estratégico de Coleções avançadas (`Maps/HashMap`) para otimização algorítmica e redução de complexidade computacional.
-- **Gestão de Projeto Ágil:** Ciclo de vida de software gerenciado via GitHub Projects e Kanban, com rastreabilidade total através de Issues e Milestones.
-- **Padrões de Versionamento:** Histórico de desenvolvimento baseado em Conventional Commits, garantindo uma documentação de mudanças profissional e semântica.
+- **Arquitetura e Princípios:** POO Avançada (Abstração, Encapsulamento) e aplicação rigorosa de SOLID (especialmente o Princípio da Responsabilidade Única e Substituição de Liskov).
+- **Processamento Funcional:** Uso estratégico de Streams API e Lambda expressions para otimização algorítmica e filtros de dados complexos.
+- **Qualidade de Software:** Ciclo de desenvolvimento fundamentado em testes automatizados e tratamento de exceções customizadas para resiliência do core banking.
+- **Gestão Ágil e Versionamento:** Fluxo gerenciado via Kanban (GitHub Projects) e histórico baseado em Conventional Commits para rastreabilidade semântica.
 
 ## 🔬 Pesquisa & Inovação (UFRRJ)
 Como parte do meu projeto de **Iniciação Científica**, o LedgerFlow serve como laboratório para:
@@ -27,7 +26,7 @@ Como parte do meu projeto de **Iniciação Científica**, o LedgerFlow serve com
 
 ## 🗺️ Roadmap de Evolução
 ✅ **Fase 1: Fundamentos e Lógica Bancária (Concluído)**
-- Core Banking & POO (Concluído)Implementação dos pilares de POO (Herança, Polimorfismo e Encapsulamento).
+- Core Banking & POO: Implementação dos pilares de POO (Herança, Polimorfismo e Encapsulamento).
   
 - Criação de transações imutáveis com registros de LocalDateTime e UUID.
   
@@ -35,21 +34,21 @@ Como parte do meu projeto de **Iniciação Científica**, o LedgerFlow serve com
   
   
 ✅ **Fase 2: Arquitetura e Otimização Estrutural (Concluído)**
-- Refatoração & Performance (Concluído)Arquitetura em Camadas: Desacoplamento da Interface de Usuário (BancoUI) da lógica de orquestração.
+- Arquitetura em Camadas: Desacoplamento da Interface de Usuário (BancoUI) da lógica de orquestração.
   
 - Robustez de Entrada: Blindagem contra falhas de terminal e Safe Input para garantir a resiliência do software.
   
 - Otimização de Estrutura de Dados: Migração de List para HashMap, reduzindo a complexidade de busca de $O(n)$ para $O(1)$.
   
   
-⏳ **Fase 3: Processamento Moderno e Qualidade (Em progresso)**
+✅ **Fase 3: Processamento Moderno e Qualidade (Concluído)**
 - Functional Programming: Implementação de Java Streams para filtragem avançada e eficiente do histórico de transações.
 
 - Qualidade de Software: Introdução de Testes Unitários com JUnit 5 para garantir a integridade dos fluxos críticos de saque e transferência.
 
 - Data API: Geração de extratos inteligentes segmentados por tipo de operação e intervalos temporais dinâmicos.
   
-📅 **Fase 4: Persistência e Integridade SQL**
+⏳ **Fase 4: Persistência e Integridade SQL (Em progresso)**
 - Camada de Persistência: Substituição do armazenamento volátil (Map) por persistência física em banco de dados relacional.
 
 - JDBC & MySQL: Integração direta com SQL para garantir a durabilidade e segurança dos dados sob os princípios ACID.
